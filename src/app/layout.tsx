@@ -20,6 +20,9 @@ export default function RootLayout({
         <Navigation />
         {children}
       </body>
+      <head>
+        <link rel="icon" href="/favicon.jpg" sizes="any" />
+      </head>
     </html>
   );
 }
