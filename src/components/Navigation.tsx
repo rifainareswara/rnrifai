@@ -34,6 +34,12 @@ const Navigation = () => {
                 About
               </Link>
               <Link
+                href="/news"
+                className="text-gray-800 hover:bg-orange-500 hover:text-white px-3 py-2 rounded-md text-md font-bold"
+              >
+                News
+              </Link>
+              <Link
                 href="/contact"
                 className="text-gray-800 hover:bg-orange-500 hover:text-white px-3 py-2 rounded-md text-md font-bold"
               >
