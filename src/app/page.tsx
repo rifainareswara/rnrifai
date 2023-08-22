@@ -1,5 +1,15 @@
 // import Image from "next/image";
-import Navigation from "./Pages/Navigation";
+
+import React from "react";
+import dynamic from "next/dynamic";
+const Navigation = dynamic(() => import("../components/Pages/Navigation"), {
+  loading: () => <p>Loading...</p>,
+  ssr: false, // Tidak perlu SSR untuk komponen klien
+  client: {
+    loading: () => <p>Loading...</p>,
+  },
+  use: "client",
+});
 
 export default function Home() {
   return (

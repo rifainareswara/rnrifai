@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 :root {
-  background-color: #000814;
+  background: rgb(255, 230, 121);
+  background: radial-gradient(circle, rgba(255, 230, 121, 1) 0%, rgba(255, 240, 199, 1) 100%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    background-color: #000814;
+    background: rgb(255, 230, 121);
+    background: radial-gradient(circle, rgba(255, 230, 121, 1) 0%, rgba(255, 240, 199, 1) 100%);
   }
 }
 
@@ -24,13 +26,13 @@ body {
 }
 
 .nav-link {
-  color: #FFC300;
+  color: #242424;
   position: relative;
   text-decoration: none;
 }
 
 .nav-link::before {
-  background: #003566;
+  background: #ffd000;
   content: "";
   inset: 0;
   position: absolute;

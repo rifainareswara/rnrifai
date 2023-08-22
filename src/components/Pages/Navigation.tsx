@@ -4,7 +4,7 @@ import Link from "next/link";
 const Navigation = () => {
   return (
     <nav className="bg-opacity-0 p-4 md:pt-8 md:pb-4">
-      <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center">
+      <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-end ">
         <Link
           href="/"
           className="nav-link text-white text-xl font-bold md:mr-4 mb-4 md:mb-0"
