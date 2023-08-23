@@ -58,7 +58,7 @@ export default function News() {
             <img
               src={article?.urlToImage}
               alt="image"
-              className="w-full h-auto mb-2"
+              className="w-full h-[250px] mb-2"
             />
             <a href={article?.url} target="_blank">
               <p className="text-base font-semibold">{article?.title}</p>
