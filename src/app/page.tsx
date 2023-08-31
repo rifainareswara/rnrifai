@@ -25,11 +25,18 @@ export default function Home() {
               <h1 className="text-xl md:text-5xl font-bold mb-4">Ohayou!</h1>
               <p className="text-md md:text-xl md:text-justify">
                 I'm passionate about startups and technology for almost 6 years
-                and currently working as a DevOps Engineer for an Digital Nayaka
-                Abhinaya and Freelancer at Private Company. And I've been
-                crushing it in the social media marketing both web2 and web3 for
-                over 3 years. I was responsible for project and marketing
-                management for various projects.
+                and currently working as a{" "}
+                <span className="text-orange-500 font-bold">
+                  DevOps Engineer
+                </span>{" "}
+                for an &nbsp;
+                <span className="text-orange-500 font-bold">
+                  Digital Nayaka Abhinaya
+                </span>{" "}
+                and Freelancer at Private Company. And I've been crushing it in
+                the social media marketing both web2 and web3 for over 3 years.
+                I was responsible for project and marketing management for
+                various projects.
               </p>
               <br />
               <br />

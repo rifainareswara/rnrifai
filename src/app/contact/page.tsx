@@ -7,14 +7,26 @@ export default function Page() {
         <p>
           Do not hesitate to contact me if you need any marketing things, you
           can connect me on Linkedin. Or directly send me a message on email at
-          rifairizqi.hao@gmail.com or even DM through my social media.
+          &nbsp;
+          <span className="text-orange-500 font-bold">
+            rifairizqi.hao@gmail.com
+          </span>{" "}
+          or even DM through my social media.
         </p>
       </div>
-      <div className="flex p-4">
+      <div
+        className="flex p-4 rounded-lg mt-7"
+        style={{
+          background: "#fefae0",
+          boxShadow:
+            "0px 4.2px 3.4px rgba(0, 0, 0, 0.028), 0px 14.1px 11.4px rgba(0, 0, 0, 0.042), 0px 63px 51px rgba(0, 0, 0, 0.07)",
+        }}
+      >
         <div className="p-4">
           <div className="text-md md:text-xl">
             <h1 className="font-bold">From</h1>
-            <p>Bekasi, Indonesia.</p>
+            <p>Mojogedang, Karanganyar.</p>
+            <p>Jawa Tengah, Indonesia.</p>
             <p>UTC/GMT +7 hours</p>
           </div>
         </div>

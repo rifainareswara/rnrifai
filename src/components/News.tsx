@@ -47,7 +47,13 @@ export default function News() {
   }, []);
 
   if (isLoading) {
-    return <h1 className="font-bold text-2xl text-center">Loading...</h1>;
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:m-10">
+        {Array.from({ length: 9 }).map((_, i) => (
+          <div className="bg-gray-300 h-[200px] animate-pulse" key={i}></div>
+        ))}
+      </div>
+    );
   }
 
   return (
@@ -61,7 +67,9 @@ export default function News() {
               className="w-full h-[250px] mb-2"
             />
             <a href={article?.url} target="_blank">
-              <p className="text-base font-semibold">{article?.title}</p>
+              <p className="text-base font-semibold hover:bg-orange-600">
+                {article?.title}
+              </p>
             </a>
           </div>
         ))}
