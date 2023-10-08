@@ -2,7 +2,6 @@
 import axios from "axios";
 import Image from "next/image";
 import React, { useCallback, useEffect, useState } from "react";
-import url from "./../../node_modules/axios/lib/platform/node/classes/URLSearchParams";
 
 // const apiKeyNewsApi = "f31c177f2442429c92757cfed2a8f3e1";
 
@@ -30,7 +29,7 @@ export default function News() {
         console.log(response.data);
 
         // set articles dari response
-        setArticles(response.data.articles);
+        setArticles(response.data.articles.slice(0, 1));
       } catch (error) {
         // jika errror
         console.log(error);
@@ -61,7 +60,7 @@ export default function News() {
       {articles.length > 0 &&
         articles.map((article, index) => (
           <div key={index} className="bg-white p-4 shadow-md rounded-lg">
-            <img
+            <Image
               src={article?.urlToImage}
               alt="image"
               className="w-full h-[250px] mb-2"

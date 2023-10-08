@@ -19,12 +19,12 @@ export default function Home() {
   return (
     <main>
       <div className="flex justify-center p-4 md:p-8 md:mt-20">
-        <div class="grid grid-flow-row auto-rows-max">
+        <div className="grid grid-flow-row auto-rows-max">
           <div className="max-w-3xl mx-auto md:text-center">
             <div>
               <h1 className="text-xl md:text-5xl font-bold mb-4">Ohayou!</h1>
               <p className="text-md md:text-xl md:text-justify">
-                I'm passionate about startups and technology for almost 6 years
+                I am passionate about startups and technology for almost 6 years
                 and currently working as a{" "}
                 <span className="text-orange-500 font-bold">
                   DevOps Engineer
@@ -33,10 +33,10 @@ export default function Home() {
                 <span className="text-orange-500 font-bold">
                   Digital Nayaka Abhinaya
                 </span>{" "}
-                and Freelancer at Private Company. And I've been crushing it in
-                the social media marketing both web2 and web3 for over 3 years.
-                I was responsible for project and marketing management for
-                various projects.
+                and Freelancer at Private Company. And I have been crushing it
+                in the social media marketing both web2 and web3 for over 3
+                years. I was responsible for project and marketing management
+                for various projects.
               </p>
               <br />
               <br />

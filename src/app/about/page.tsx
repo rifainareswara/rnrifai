@@ -8,7 +8,12 @@ export default function Page() {
       <div className="p-4">
         <div className="md:max-w-2xl mx-auto">
           <div className="rounded-3xl overflow-hidden">
-            <Image src="/assets/1.jpg" width={350} height={600} />
+            <Image
+              src="/assets/qq2.jpg"
+              width={280}
+              height={300}
+              alt="Rizqi Nur Rifai"
+            />
           </div>
         </div>
       </div>
@@ -26,7 +31,7 @@ export default function Page() {
             user interfaces. I am passionate about tackling technology
             challenges and contributing to innovative projects. If you have any
             questions or need assistance in Information Technology, DevOps or
-            M.E.R.N, please don't hesitate to contact me. Thank You!
+            M.E.R.N, please do not hesitate to contact me. Thank You!
           </p>
         </div>
         <div className="md:max-w-2xl mx-auto flex justify-start mt-6">
