@@ -1,0 +1,6 @@
+projectKey=rnrifai-page
+serverUrl=http://localhost:9999
+serverVersion=9.2.4.50792
+dashboardUrl=http://localhost:9999/dashboard?id=rnrifai-page
+ceTaskId=AY-_apizvdZcbzX8tyU_
+ceTaskUrl=http://localhost:9999/api/ce/task?id=AY-_apizvdZcbzX8tyU_

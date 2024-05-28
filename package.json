@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3007",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sonar": "sonar-scanner"
   },
   "dependencies": {
     "@types/node": "20.4.9",
