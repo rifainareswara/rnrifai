@@ -16,7 +16,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 text-gray-800 font-bold text-xl">
-              RNRIFAI<span style={{ color: "orange" }}>.TECH</span>
+              RNRIFAI<span style={{ color: "orange" }}>.SITE</span>
             </div>
           </div>
           <div className="hidden md:block">
