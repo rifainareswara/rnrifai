@@ -54,7 +54,7 @@ export default function Page() {
             <p>
               <a
                 className="text-gray-800 hover:bg-orange-500 hover:text-white"
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/mas.rifai_"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -31,9 +31,9 @@ export default function Home() {
                 </span>{" "}
                 for an &nbsp;
                 <span className="text-orange-500 font-bold">
-                  Digital Nayaka Abhinaya
+                  SwiftMind
                 </span>{" "}
-                and Freelancer at Private Company. And I have been crushing it
+                and Freelancer. And I have been crushing it
                 in the social media marketing both web2 and web3 for over 3
                 years. I was responsible for project and marketing management
                 for various projects.

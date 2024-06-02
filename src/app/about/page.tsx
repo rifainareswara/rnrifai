@@ -22,7 +22,7 @@ export default function Page() {
           <p className="text-md md:text-xl md:text-justify">
             Ohayou! Call Me Rizqi, DevOps Engineer at Digital Nayaka Abhinaya. I
             have a strong interest in Information Technology such as Docker,
-            Kubernetes, Nginx, Kong, Mongo, Express, React, Node (M.E.R.N) and
+            Kubernetes, Nginx, Jenkins, Express, React, Next (M.E.R.N) and
             other Technologies. In my role I focus on efficiently integrating
             software development and operations, ensuring reliable software
             delivery. I love to stay up to date with the latest in the industry
