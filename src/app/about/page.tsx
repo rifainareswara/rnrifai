@@ -20,9 +20,9 @@ export default function Page() {
       <div className="p-4">
         <div className="md:max-w-2xl mx-auto">
           <p className="text-md md:text-xl md:text-justify">
-            Ohayou! Call Me Rizqi, DevOps Engineer at Digital Nayaka Abhinaya. I
+            Ohayou! Call Me Rizqi, DevSecOps Engineer at Swift Mind. I
             have a strong interest in Information Technology such as Docker,
-            Kubernetes, Nginx, Jenkins, Express, React, Next (M.E.R.N) and
+            Jenkins, Express, React, Next (M.E.R.N) and
             other Technologies. In my role I focus on efficiently integrating
             software development and operations, ensuring reliable software
             delivery. I love to stay up to date with the latest in the industry
@@ -30,7 +30,7 @@ export default function Page() {
             expertise in leveraging React.js to build responsive and interactive
             user interfaces. I am passionate about tackling technology
             challenges and contributing to innovative projects. If you have any
-            questions or need assistance in Information Technology, DevOps or
+            questions or need assistance in Information Technology, DevSecOps or
             M.E.R.N, please do not hesitate to contact me. Thank You!
           </p>
         </div>

@@ -27,7 +27,7 @@ export default function Home() {
                 I am passionate about startups and technology for almost 6 years
                 and currently working as a{" "}
                 <span className="text-orange-500 font-bold">
-                  DevOps Engineer
+                  DevSecOps Engineer
                 </span>{" "}
                 for an &nbsp;
                 <span className="text-orange-500 font-bold">
