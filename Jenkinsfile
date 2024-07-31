@@ -27,6 +27,25 @@ pipeline {
                 archiveArtifacts artifacts: 'trivy.json'
             }
         }
+        stage('[SAST] SonarQube') {
+            steps {
+                script {
+                    def scannerHome = tool name: env.SONARQUBE_SCANNER, type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    withSonarQubeEnv(env.SONARQUBE_SERVER) {
+                        sh "${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=rnifai-page \
+                            -Dsonar.sources=. \
+                            -Dsonar.host.url=${SONAR_HOST_URL} \
+                            -Dsonar.login=${SONAR_AUTH_TOKEN}"
+                    }
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'docker-compose up -d' 
+            }
+        }
     }
 
 
