@@ -10,7 +10,7 @@ pipeline {
         SONAR_AUTH_TOKEN = credentials('token-sonarqube')
         DOCKER_HUB_CREDENTIALS = credentials('docker-login-rizqi') 
         DOCKER_IMAGE = 'rnrifai/rnrifai-page:latest' 
-        ZAP_DOCKER_IMAGE = 'owasp/zap2docker-stable' // Define the OWASP ZAP Docker image
+        ZAP_DOCKER_IMAGE = 'ghcr.io/zaproxy/zaproxy:stable'
     }
 
     stages {
@@ -51,9 +51,15 @@ pipeline {
             steps {
                 script {
                     echo 'Running OWASP ZAP scan...'
-                    sh "docker run --rm -t ${ZAP_DOCKER_IMAGE} zap-full-scan.py -t http://139.162.18.93:3007 -r zap-report.html"
+                    sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
+                    sh '''
+                        docker run --rm -t \
+                            -v ${WORKSPACE}/zap-reports:/zap/wrk \
+                            ghcr.io/zaproxy/zaproxy:stable \
+                            zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
+                    '''
                 }
-                archiveArtifacts artifacts: 'zap-report.html'
+                archiveArtifacts artifacts: 'zap-reports/zap-report.html'
             }
         }
     }
