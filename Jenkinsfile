@@ -42,15 +42,21 @@ pipeline {
                 }
             }
         }
-        stage('[DAST] OWASP ZAP') {
-            steps {
-                script {
-                    echo 'Running OWASP ZAP scan...'
-                    sh "docker run --rm -t ${ZAP_DOCKER_IMAGE} zap-full-scan.py -t http://your-application-url -r zap-report.html"
-                }
-                archiveArtifacts artifacts: 'zap-report.html'
+    stage('[DAST] OWASP ZAP') {
+        steps {
+            script {
+                echo 'Running OWASP ZAP scan...'
+                sh """
+                docker pull owasp/zap2docker-stable
+                docker run --rm -t owasp/zap2docker-stable zap-full-scan.py \
+                    -t http://139.162.18.93:3007/ \
+                    -r zap-report.html
+                """
             }
+            archiveArtifacts artifacts: 'zap-report.html'
         }
+    }
+
         stage('Deploy') {
             steps {
                 sh 'docker-compose up -d' 
