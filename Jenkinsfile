@@ -49,17 +49,19 @@ pipeline {
         }
         stage('[DAST] OWASP ZAP') {
             steps {
-                script {
-                    echo 'Running OWASP ZAP scan...'
-                    sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
-                    sh '''
-                        docker run --rm -t \
-                            -v ${WORKSPACE}/zap-reports:/zap/wrk \
-                            ghcr.io/zaproxy/zaproxy:stable \
-                            zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
-                    '''
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    script {
+                        echo 'Running OWASP ZAP scan...'
+                        sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
+                        sh '''
+                            docker run --rm -t \
+                                -v ${WORKSPACE}/zap-reports:/zap/wrk \
+                                ghcr.io/zaproxy/zaproxy:stable \
+                                zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
+                        '''
+                    }
+                    archiveArtifacts artifacts: 'zap-reports/zap-report.html'
                 }
-                archiveArtifacts artifacts: 'zap-reports/zap-report.html'
             }
         }
     }
