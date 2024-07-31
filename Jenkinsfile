@@ -38,19 +38,12 @@ pipeline {
         //         }
         //     }
         // }
-        stage('SCA Trivy Scan Dockerfile Misconfiguration') {
-            agent {
-                docker {
-                    image 'aquasec/trivy:latest'
-                    args '-u root --network host --entrypoint='
-                }
-            }
+        stage('SCA Trivy Scan') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'trivy config --exit-code 1 --format json --output trivy-scan-dockerfile-report.json .'
+                script {
+                    echo 'Scanning for vulnerabilities using Trivy...'
+                    sh 'trivy config . --format template --template "@trivy/contrib/html.tpl" --output report-trivy.html '
                 }
-                sh 'cat trivy-scan-dockerfile-report.json'
-                archiveArtifacts artifacts: 'trivy-scan-dockerfile-report.json'
             }
         }
     }
