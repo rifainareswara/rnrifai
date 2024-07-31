@@ -57,20 +57,18 @@ pipeline {
         //                     docker run --rm -t \
         //                         -v ${WORKSPACE}/zap-reports:/zap/wrk \
         //                         ghcr.io/zaproxy/zaproxy:stable \
-        //                         zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html -x /zap/wrk/zap-report.xml
+        //                         zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
         //                 '''
         //             }
         //             sh 'cp /zap/wrk/zap-report.html ./zap-report.html'
-        //             sh 'cp /zap/wrk/zap-report.xml ./zap-report.xml'
         //             archiveArtifacts artifacts: 'zap-report.html'
-        //             archiveArtifacts artifacts: 'zap-report.xml'
         //         }
         //     }
         // }
         stage('[DAST] OWASP ZAP') {
             steps {
-                script {
-                    try {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    script {
                         echo 'Running OWASP ZAP scan...'
                         sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
                         sh '''
@@ -79,17 +77,36 @@ pipeline {
                                 ghcr.io/zaproxy/zaproxy:stable \
                                 zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
                         '''
-                        sh 'cp /zap/wrk/zap-report.html ./zap-report.html'
-                    } catch (Exception e) {
-                        echo 'OWASP ZAP scan failed.'
-                        currentBuild.result = 'FAILURE'
-                    } finally {
-                        // Archive the artifacts regardless of the result
-                        archiveArtifacts artifacts: 'zap-report.html'
                     }
+                    sh 'cp ${WORKSPACE}/zap-reports/zap-report.html ./zap-report.html'
+                    archiveArtifacts artifacts: 'zap-report.html'
                 }
             }
         }
+
+        // stage('[DAST] OWASP ZAP') {
+        //     steps {
+        //         script {
+        //             try {
+        //                 echo 'Running OWASP ZAP scan...'
+        //                 sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
+        //                 sh '''
+        //                     docker run --rm -t \
+        //                         -v ${WORKSPACE}/zap-reports:/zap/wrk \
+        //                         ghcr.io/zaproxy/zaproxy:stable \
+        //                         zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
+        //                 '''
+        //                 sh 'cp /zap/wrk/zap-report.html ./zap-report.html'
+        //             } catch (Exception e) {
+        //                 echo 'OWASP ZAP scan failed.'
+        //                 currentBuild.result = 'FAILURE'
+        //             } finally {
+        //                 // Archive the artifacts regardless of the result
+        //                 archiveArtifacts artifacts: 'zap-report.html'
+        //             }
+        //         }
+        //     }
+        // }
 
 
         // stage('[DAST] OWASP ZAP') {
