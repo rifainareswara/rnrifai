@@ -42,21 +42,21 @@ pipeline {
                 }
             }
         }
-    stage('[DAST] OWASP ZAP') {
-        steps {
-            script {
-                echo 'Running OWASP ZAP scan...'
-                sh """
-                docker pull owasp/zap2docker-stable
-                docker run --rm -t owasp/zap2docker-stable zap-full-scan.py \
-                    -t http://139.162.18.93:3007/ \
-                    -r zap-report.html
-                """
+    stage('DAST OWASP ZAP') {
+        agent {
+            docker {
+                image 'ghcr.io/zaproxy/zaproxy:weekly'
+                args '-u root --network host -v /var/run/docker.sock:/var/run/docker.sock --entrypoint= -v $WORKSPACE:/zap/wrk/:rw'
             }
-            archiveArtifacts artifacts: 'zap-report.html'
+        }
+        steps {
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                sh 'zap-baseline.py -t http://139.162.18.93:3007 -r /zap/wrk/zapbaseline.html -x /zap/wrk/zapbaseline.xml'
+            }
+            archiveArtifacts artifacts: 'zapbaseline.html'
+            archiveArtifacts artifacts: 'zapbaseline.xml'
         }
     }
-
         stage('Deploy') {
             steps {
                 sh 'docker-compose up -d' 
