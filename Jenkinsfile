@@ -48,7 +48,7 @@ pipeline {
                 archiveArtifacts artifacts: 'trivy-scan-dockerfile-report.json'
                 }
             }
-        }
+        
     }
 
     post {
