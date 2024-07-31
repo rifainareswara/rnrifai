@@ -1,11 +1,5 @@
-# Gunakan image Ubuntu sebagai base
-FROM ubuntu:22.04
-
-# Install Node.js dan npm
-RUN apt-get update && apt-get install -y curl \
-    && curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get install -y nodejs \
-    && apt-get clean
+# Gunakan image node sebagai base
+FROM node:16-alpine
 
 # Set working directory
 WORKDIR /app
@@ -24,3 +18,4 @@ RUN npm run build
 
 # Jalankan Next.js di mode production
 CMD ["npm", "run", "start"]
+
