@@ -20,6 +20,14 @@ pipeline {
         }
         
     }
+    stage('SCA Trivy Scan') {
+        steps {
+            script {
+                echo 'Scanning for vulnerabilities using Trivy...'
+                sh 'trivy fs . --format json --output report-trivy.json'
+            }
+        }
+    }
 
     post {
         always {
