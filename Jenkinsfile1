@@ -10,7 +10,6 @@ pipeline {
         SONAR_AUTH_TOKEN = credentials('token-sonarqube')
         DOCKER_HUB_CREDENTIALS = credentials('docker-login-rizqi') 
         DOCKER_IMAGE = 'rnrifai/rnrifai-page:latest' 
-        ZAP_DOCKER_IMAGE = 'owasp/zap2docker-stable' // Define the OWASP ZAP Docker image
     }
 
     stages {
@@ -42,21 +41,13 @@ pipeline {
                 }
             }
         }
-        stage('[DAST] OWASP ZAP') {
-            steps {
-                script {
-                    echo 'Running OWASP ZAP scan...'
-                    sh "docker run --rm -t ${ZAP_DOCKER_IMAGE} zap-full-scan.py -t http://your-application-url -r zap-report.html"
-                }
-                archiveArtifacts artifacts: 'zap-report.html'
-            }
-        }
         stage('Deploy') {
             steps {
                 sh 'docker-compose up -d' 
             }
         }
     }
+
 
     post {
         always {
