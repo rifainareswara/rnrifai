@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     echo 'Scanning for vulnerabilities using Trivy...'
-                    sh 'trivy image --format template --template "@trivy/contrib/html.tpl" --output report-trivy.html f5f084c8562b'
+                    sh 'trivy fs --format=json --output=trivy.json .'
                 }
                 archiveArtifacts artifacts: 'trivy.json'
             }
