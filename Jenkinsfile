@@ -70,28 +70,29 @@ pipeline {
         stage('[DAST] OWASP ZAP') {
             steps {
                 script {
-                    echo 'Running OWASP ZAP scan...'
-                    sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
-                    sh '''
-                        docker run --rm -t \
-                            -v ${WORKSPACE}/zap-reports:/zap/wrk \
-                            ghcr.io/zaproxy/zaproxy:stable \
-                            zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html -x /zap/wrk/zap-report.xml
-                    '''
-                    sh 'cp /zap/wrk/zap-report.html ./zap-report.html'
-                    sh 'cp /zap/wrk/zap-report.xml ./zap-report.xml'
-                }
-                // Always archive the artifacts regardless of the build result
-                archiveArtifacts artifacts: 'zap-report.html'
-                archiveArtifacts artifacts: 'zap-report.xml'
-            }
-            // Ensure the build continues even if the scan fails
-            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                script {
-                    echo 'OWASP ZAP scan completed. Reports archived.'
+                    try {
+                        echo 'Running OWASP ZAP scan...'
+                        sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
+                        sh '''
+                            docker run --rm -t \
+                                -v ${WORKSPACE}/zap-reports:/zap/wrk \
+                                ghcr.io/zaproxy/zaproxy:stable \
+                                zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html -x /zap/wrk/zap-report.xml
+                        '''
+                        sh 'cp /zap/wrk/zap-report.html ./zap-report.html'
+                        sh 'cp /zap/wrk/zap-report.xml ./zap-report.xml'
+                    } catch (Exception e) {
+                        echo 'OWASP ZAP scan failed.'
+                        currentBuild.result = 'FAILURE'
+                    } finally {
+                        // Archive the artifacts regardless of the result
+                        archiveArtifacts artifacts: 'zap-report.html'
+                        archiveArtifacts artifacts: 'zap-report.xml'
+                    }
                 }
             }
         }
+
 
         // stage('[DAST] OWASP ZAP') {
         //     steps {
