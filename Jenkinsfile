@@ -47,20 +47,52 @@ pipeline {
                 sh 'docker-compose up -d' 
             }
         }
+        // stage('[DAST] OWASP ZAP') {
+        //     steps {
+        //         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+        //             script {
+        //                 echo 'Running OWASP ZAP scan...'
+        //                 sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
+        //                 sh '''
+        //                     docker run --rm -t \
+        //                         -v ${WORKSPACE}/zap-reports:/zap/wrk \
+        //                         ghcr.io/zaproxy/zaproxy:stable \
+        //                         zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
+        //                 '''
+        //             }
+        //             archiveArtifacts artifacts: 'zap-reports/zap-report.html'
+        //         }
+        //     }
+        // }
         stage('[DAST] OWASP ZAP') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    script {
+                script {
+                    try {
                         echo 'Running OWASP ZAP scan...'
                         sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
-                        sh '''
+                
+                        // Run the scan and capture the output
+                        def scanOutput = sh(script: '''
                             docker run --rm -t \
                                 -v ${WORKSPACE}/zap-reports:/zap/wrk \
                                 ghcr.io/zaproxy/zaproxy:stable \
                                 zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
-                        '''
+                        ''', returnStatus: true, returnStdout: true)
+                
+                        // Check for non-zero exit codes
+                        if (scanOutput != 0) {
+                            echo "OWASP ZAP scan returned exit code: ${scanOutput}"
+                            error "OWASP ZAP scan failed with exit code: ${scanOutput}"
+                        }
+                
+                    } catch (Exception e) {
+                        echo "An error occurred: ${e.getMessage()}"
+                        currentBuild.result = 'FAILURE'
+                        throw e
+                    } finally {
+                        // Archive the report regardless of success or failure
+                        archiveArtifacts artifacts: 'zap-reports/zap-report.html'
                     }
-                    archiveArtifacts artifacts: 'zap-reports/zap-report.html'
                 }
             }
         }
