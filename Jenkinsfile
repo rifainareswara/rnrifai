@@ -42,7 +42,10 @@ pipeline {
             steps {
                 script {
                     echo 'Scanning for vulnerabilities using Trivy...'
-                    sh 'trivy config . --format template --template "@trivy/contrib/html.tpl" --output report-trivy.html '
+                    sh 'trivy config . --format json > trivy-scan-dockerfile-report.json'
+                }
+                sh 'cat trivy-scan-dockerfile-report.json'
+                archiveArtifacts artifacts: 'trivy-scan-dockerfile-report.json'
                 }
             }
         }
