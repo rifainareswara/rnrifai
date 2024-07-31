@@ -77,17 +77,15 @@ pipeline {
                             docker run --rm -t \
                                 -v ${WORKSPACE}/zap-reports:/zap/wrk \
                                 ghcr.io/zaproxy/zaproxy:stable \
-                                zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html -x /zap/wrk/zap-report.xml
+                                zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
                         '''
                         sh 'cp /zap/wrk/zap-report.html ./zap-report.html'
-                        sh 'cp /zap/wrk/zap-report.xml ./zap-report.xml'
                     } catch (Exception e) {
                         echo 'OWASP ZAP scan failed.'
                         currentBuild.result = 'FAILURE'
                     } finally {
                         // Archive the artifacts regardless of the result
                         archiveArtifacts artifacts: 'zap-report.html'
-                        archiveArtifacts artifacts: 'zap-report.xml'
                     }
                 }
             }
