@@ -18,12 +18,13 @@ pipeline {
                 sh 'git clone https://github.com/rifai-rizqi3/rnrifai.git' 
             }
         }
-        stage('SCA Trivy Scan') {
+        stage('[SCA] Trivy Scan') {
             steps {
                 script {
                     echo 'Scanning for vulnerabilities using Trivy...'
-                    sh 'trivy fs . --format json --output report-trivy.json'
+                    sh 'trivy image --format template --template "@trivy/contrib/html.tpl" --output report-trivy.html f5f084c8562b'
                 }
+                archiveArtifacts artifacts: 'trivy.json'
             }
         }
     }
