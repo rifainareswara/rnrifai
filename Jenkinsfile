@@ -71,18 +71,21 @@ pipeline {
                         echo 'Running OWASP ZAP scan...'
                         sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
                 
-                        // Run the scan and capture the output
-                        def scanOutput = sh(script: '''
+                        // Run the scan and capture the output and error
+                        def scanResult = sh(script: '''
                             docker run --rm -t \
                                 -v ${WORKSPACE}/zap-reports:/zap/wrk \
                                 ghcr.io/zaproxy/zaproxy:stable \
                                 zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
-                        ''', returnStatus: true, returnStdout: true)
+                        ''', returnStatus: true, returnStdout: true, returnStderr: true)
+                
+                        echo "ZAP scan output: ${scanResult.stdout}"
+                        echo "ZAP scan errors: ${scanResult.stderr}"
                 
                         // Check for non-zero exit codes
-                        if (scanOutput != 0) {
-                            echo "OWASP ZAP scan returned exit code: ${scanOutput}"
-                            error "OWASP ZAP scan failed with exit code: ${scanOutput}"
+                        if (scanResult.exitCode != 0) {
+                            echo "OWASP ZAP scan returned exit code: ${scanResult.exitCode}"
+                            error "OWASP ZAP scan failed with exit code: ${scanResult.exitCode}"
                         }
                 
                     } catch (Exception e) {
@@ -96,6 +99,7 @@ pipeline {
                 }
             }
         }
+
     }
 
     post {
