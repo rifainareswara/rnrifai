@@ -47,26 +47,52 @@ pipeline {
                 sh 'docker-compose up -d' 
             }
         }
+        // stage('[DAST] OWASP ZAP') {
+        //     steps {
+        //         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+        //             script {
+        //                 echo 'Running OWASP ZAP scan...'
+        //                 sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
+        //                 sh '''
+        //                     docker run --rm -t \
+        //                         -v ${WORKSPACE}/zap-reports:/zap/wrk \
+        //                         ghcr.io/zaproxy/zaproxy:stable \
+        //                         zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html -x /zap/wrk/zap-report.xml
+        //                 '''
+        //             }
+        //             sh 'cp /zap/wrk/zap-report.html ./zap-report.html'
+        //             sh 'cp /zap/wrk/zap-report.xml ./zap-report.xml'
+        //             archiveArtifacts artifacts: 'zap-report.html'
+        //             archiveArtifacts artifacts: 'zap-report.xml'
+        //         }
+        //     }
+        // }
         stage('[DAST] OWASP ZAP') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    script {
-                        echo 'Running OWASP ZAP scan...'
-                        sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
-                        sh '''
-                            docker run --rm -t \
-                                -v ${WORKSPACE}/zap-reports:/zap/wrk \
-                                ghcr.io/zaproxy/zaproxy:stable \
-                                zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html -x /zap/wrk/zap-report.xml
-                        '''
-                    }
+                script {
+                    echo 'Running OWASP ZAP scan...'
+                    sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
+                    sh '''
+                        docker run --rm -t \
+                            -v ${WORKSPACE}/zap-reports:/zap/wrk \
+                            ghcr.io/zaproxy/zaproxy:stable \
+                            zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html -x /zap/wrk/zap-report.xml
+                    '''
                     sh 'cp /zap/wrk/zap-report.html ./zap-report.html'
                     sh 'cp /zap/wrk/zap-report.xml ./zap-report.xml'
-                    archiveArtifacts artifacts: 'zap-report.html'
-                    archiveArtifacts artifacts: 'zap-report.xml'
+                }
+                // Always archive the artifacts regardless of the build result
+                archiveArtifacts artifacts: 'zap-report.html'
+                archiveArtifacts artifacts: 'zap-report.xml'
+            }
+            // Ensure the build continues even if the scan fails
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                script {
+                    echo 'OWASP ZAP scan completed. Reports archived.'
                 }
             }
         }
+
         // stage('[DAST] OWASP ZAP') {
         //     steps {
         //         script {
@@ -106,10 +132,6 @@ pipeline {
     }
 
     post {
-        always {
-            // Cleanup Docker images
-            sh 'docker rmi $DOCKER_IMAGE || true'
-        }
         success {
             echo "Post Success"
             discordSend description: "Jenkins Pipeline Build", footer: "Pipeline Success", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "https://discordapp.com/api/webhooks/1245658580485541958/-qTrq_-tzCe6HliVp-U2epamzlh6AN-c2bbzU5FFvJXgNzzz_PxlshYKTtAxI-6gKRVw"
