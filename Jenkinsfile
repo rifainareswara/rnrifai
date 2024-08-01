@@ -93,7 +93,7 @@ pipeline {
                         sh 'mkdir -p ${WORKSPACE}/zap-reports'  // Ensure the directory exists
                         sh 'docker pull ghcr.io/zaproxy/zaproxy:stable'
                         sh '''
-                            docker run --user $root --rm -t \
+                            docker run --user $(id -u) \
                                 -v ${WORKSPACE}/zap-reports:/zap/wrk \
                                 ghcr.io/zaproxy/zaproxy:stable \
                                 zap-full-scan.py -t http://139.162.18.93:3007 -r /zap/wrk/zap-report.html
