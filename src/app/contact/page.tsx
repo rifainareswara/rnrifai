@@ -25,9 +25,9 @@ export default function Page() {
         <div className="p-4">
           <div className="text-md md:text-xl">
             <h1 className="font-bold">From</h1>
-            <p>Mojogedang, Karanganyar.</p>
-            <p>Jawa Tengah, Indonesia.</p>
-            <p>UTC/GMT +7 hours</p>
+            <p>Jimbaran, Kuta Selatan.</p>
+            <p>Bali, Indonesia.</p>
+            <p>UTC/GMT +8 hours</p>
           </div>
         </div>
         <div className="p-4">
@@ -44,7 +44,7 @@ export default function Page() {
             <p>
               <a
                 className="text-gray-800 hover:bg-orange-500 hover:text-white"
-                href="https://www.linkedin.com/in/rnrifai/"
+                href="https://www.linkedin.com/in/rizqinrifai/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -54,7 +54,7 @@ export default function Page() {
             <p>
               <a
                 className="text-gray-800 hover:bg-orange-500 hover:text-white"
-                href="https://www.instagram.com/mas.rifai_"
+                href="https://www.instagram.com/rifainareswara"
                 target="_blank"
                 rel="noopener noreferrer"
               >

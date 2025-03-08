@@ -20,32 +20,21 @@ export default function Page() {
       <div className="p-4">
         <div className="md:max-w-2xl mx-auto">
           <p className="text-md md:text-xl md:text-justify">
-            Ohayou! Call Me Rizqi, DevSecOps Engineer at Swift Mind. I
-            have a strong interest in Information Technology such as Docker,
-            Jenkins, Express, React, Next (M.E.R.N) and
-            other Technologies. In my role I focus on efficiently integrating
-            software development and operations, ensuring reliable software
-            delivery. I love to stay up to date with the latest in the industry
-            and am always eager to learn new things. Additionally, I have
-            expertise in leveraging React.js to build responsive and interactive
-            user interfaces. I am passionate about tackling technology
-            challenges and contributing to innovative projects. If you have any
-            questions or need assistance in Information Technology, DevSecOps or
-            M.E.R.N, please do not hesitate to contact me. Thank You!
+            Ohayou! I am a DevSecOps Engineer with over 7 years of experience in managing and scaling IT infrastructure. I specialize in cloud architecture, containerization, and implementing DevSecOps practices to ensure high availability and efficiency. My expertise spans platforms like AWS, Alibaba, Google Cloud, and tools such as Ansible, Jenkins, Docker and Kubernetes. Currently, I’m focused on mastering Rust, drawn to its potential for building secure, high-performance system-level applications. I believe Rust can enhance the optimization and security of cloud infrastructure, and I’m eager to leverage it in future projects.
           </p>
         </div>
         <div className="md:max-w-2xl mx-auto flex justify-start mt-6">
           <div className="flex">
-            <a href="https://www.linkedin.com/in/rnrifai/" target="_blank">
+            <a href="https://www.linkedin.com/in/rizqinrifai/" target="_blank">
               <SiLinkedin className="text-4xl m-2 text-gray-800 hover:bg-white hover:text-blue-500" />
             </a>
-            <a href="https://www.instagram.com/" target="_blank">
-              <SiInstagram className="text-4xl m-2 text-gray-800 hover:bg-purple-500 hover:text-white" />
+            <a href="https://www.instagram.com/rifainareswara" target="_blank">
+              <SiInstagram className="text-4xl m-2 text-gray-800 hover:bg-pink-500 hover:text-white" />
             </a>
-            <a href="https://github.com/rifai-rizqi3" target="_blank">
+            <a href="https://github.com/rifainareswara" target="_blank">
               <SiGithub className="text-4xl m-2 text-gray-800 hover:bg-purple-800 hover:text-white" />
             </a>
-            <a href="https://medium.com/@rifai.rizqi3" target="_blank">
+            <a href="https://medium.com/@rifainareswara" target="_blank">
               <SiMedium className="text-4xl m-2 text-gray-800 hover:bg-white hover:text-black" />
             </a>
           </div>

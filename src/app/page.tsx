@@ -3,17 +3,16 @@ import Link from "next/link";
 import {
   SiNotion,
   SiTrello,
-  SiReact,
-  SiVuedotjs,
   SiNextdotjs,
   SiExpress,
   SiDocker,
   SiJenkins,
-  SiGithub,
-  SiGrafana,
-  SiNginx,
+  SiKubernetes,
+  SiAnsible,
+  SiSonarqube,
   SiJirasoftware,
 } from "react-icons/si";
+import { FaGolang, FaRust } from "react-icons/fa6";
 
 export default function Home() {
   return (
@@ -24,19 +23,15 @@ export default function Home() {
             <div>
               <h1 className="text-xl md:text-5xl font-bold mb-4">Ohayou!</h1>
               <p className="text-md md:text-xl md:text-justify">
-                I am passionate about startups and technology for almost 6 years
+                I am passionate about startups and technology for almost 7 years
                 and currently working as a{" "}
                 <span className="text-orange-500 font-bold">
-                  DevSecOps Engineer
+                  Head of Infrastuctue
                 </span>{" "}
                 for an &nbsp;
                 <span className="text-orange-500 font-bold">
-                  SwiftMind
+                  Jobseeker Company.
                 </span>{" "}
-                and Freelancer. And I have been crushing it
-                in the social media marketing both web2 and web3 for over 3
-                years. I was responsible for project and marketing management
-                for various projects.
               </p>
               <br />
               <br />
@@ -90,16 +85,15 @@ export default function Home() {
                 <p>
                   Create a{" "}
                   <span className="text-orange-500 font-bold">
-                    responsive web
+                    WEB
                   </span>{" "}
-                  from scratch to deploy using frameworks such as React, Vue,
-                  Next, Tailwind etc. according to user needs.
+                  from scratch to deploy using frameworks such as Next, Exprerss, Golang, Rust. according to user needs.
                 </p>
                 <div className="flex justify-center m-2">
-                  <SiReact className="text-3xl m-2" />
-                  <SiVuedotjs className="text-3xl m-2" />
                   <SiNextdotjs className="text-3xl m-2" />
                   <SiExpress className="text-3xl m-2" />
+                  <FaGolang className="text-3xl m-2" />
+                  <FaRust className="text-3xl m-2" />
                 </div>
               </div>
               <div
@@ -110,20 +104,20 @@ export default function Home() {
                     "0px 4.2px 3.4px rgba(0, 0, 0, 0.028), 0px 14.1px 11.4px rgba(0, 0, 0, 0.042), 0px 63px 51px rgba(0, 0, 0, 0.07)",
                 }}
               >
-                <div className="font-bold">DevOps</div>
+                <div className="font-bold">DevOps & DevSecOps</div>
                 <p>
                   <span className="text-orange-500 font-bold">
                     Build architecture
                   </span>{" "}
                   on servers as per needs and costs. using several tools such as
-                  Docker, Jenkins, Grafana, Nginx, Kong etc.
+                  Docker, Kubernetes, Jenkins, Ansible, Sonarqube etc.
                 </p>
                 <div className="flex justify-center m-2">
                   <SiDocker className="text-3xl m-2" />
+                  <SiKubernetes className="text-3xl m-2" />
                   <SiJenkins className="text-3xl m-2" />
-                  <SiGithub className="text-3xl m-2" />
-                  <SiGrafana className="text-3xl m-2" />
-                  <SiNginx className="text-3xl m-2" />
+                  <SiAnsible className="text-3xl m-2" />
+                  <SiSonarqube className="text-3xl m-2" />
                 </div>
               </div>
             </div>
