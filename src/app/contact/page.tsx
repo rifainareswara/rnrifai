@@ -1,4 +1,5 @@
 import React from "react";
+import { IoPaperPlane } from "react-icons/io5"; // <-- DIPERLUKAN UNTUK IKON
 
 export default function Page() {
   return (
@@ -51,10 +52,10 @@ export default function Page() {
               >
                 LinkedIn
               </a>
-ar         </p>
+ar         </p>
             <p>
               <a
-                className="text-gray-800 hover:bg-orange-500 hover:text-white"
+        _B_00_B_                className="text-gray-800 hover:bg-orange-500 hover:text-white"
                 href="https://www.instagram.com/rifainareswara"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -132,10 +133,7 @@ ar         </p>
                 disabled
                 data-form-btn
               >
-                {/* Pastikan Anda telah mengimpor library ion-icon di proyek Anda,
-                  atau ganti dengan ikon dari 'react-icons'
-                */}
-                <ion-icon name="paper-plane"></ion-icon>
+                <IoPaperPlane /> {/* <-- DIPERBAIKI: Mengganti ion-icon */}
                 <span className="ml-2">Send Message</span>
               </button>
             </form>
