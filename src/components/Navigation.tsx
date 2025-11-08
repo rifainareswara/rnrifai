@@ -16,10 +16,10 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 text-gray-800 font-bold text-xl">
-              RIFAI<a href="https://nareswara.com" target="_blank" rel="noopener noreferrer">
-              <span style={{ color: "orange" }}>.NARESWARA</span>
+              <a href="https://rifai.co.id" target="_blank" rel="noopener noreferrer">
+              <span style={{ color: "orange" }}>RIFAI</span>
               </a>
-              .COM
+              .CO.ID
             </div>
           </div>
           <div className="hidden md:block">
@@ -35,6 +35,12 @@ const Navigation = () => {
                 className="text-gray-800 hover:bg-orange-500 hover:text-white px-3 py-2 rounded-md text-md font-bold"
               >
                 About
+              </Link>
+              <Link
+                href="/project"
+                className="text-gray-800 hover:bg-orange-500 hover:text-white px-3 py-2 rounded-md text-md font-bold"
+              >
+                Project
               </Link>
               <Link
                 href="/contact"
