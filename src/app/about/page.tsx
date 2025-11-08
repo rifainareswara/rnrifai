@@ -4,22 +4,28 @@ import { SiLinkedin, SiInstagram, SiGithub, SiMedium } from "react-icons/si";
 
 export default function Page() {
   return (
-    // Menambahkan `md:items-center` untuk menyejajarkan gambar & teks secara vertikal di desktop
-    // Menambahkan `md:gap-12` untuk spasi yang lebih baik antar kolom
     <div className="flex flex-col md:flex-row md:items-center md:justify-center p-4 md:p-8 md:mt-20 md:gap-12">
-      
       {/* --- KOLOM GAMBAR --- */}
       <div className="p-4 flex-shrink-0">
-        {/* - Menambahkan shadow-xl, transisi, dan efek hover:scale-105
-          - `flex-shrink-0` mencegah gambar menyusut di layout flex
-        */}
-        <div className="rounded-3xl overflow-hidden shadow-xl transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
+        {/*
+         * === PERUBAHAN DI SINI ===
+         * 1. 'relative' ditambahkan (wajib untuk prop 'fill' di Image).
+         * 2. 'aspect-[14/15]' ditambahkan untuk menjaga rasio gambar (280/300).
+         * 3. 'w-full max-w-[280px] mx-auto' untuk mobile.
+         * 4. 'md:w-[280px]' untuk desktop.
+         */}
+        <div className="relative w-full max-w-[280px] mx-auto md:w-[280px] md:max-w-none md:mx-0 rounded-3xl overflow-hidden shadow-xl transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl aspect-[14/15]">
           <Image
-            src="/assets/qq2.jpg"
-            width={280}
-            height={300}
+            src="/assets/rifai.jpeg"
             alt="Rizqi Nur Rifai"
-            className="object-cover" // Memastikan gambar mengisi area tanpa distorsi
+            /*
+             * === PERUBAHAN DI SINI ===
+             * 1. 'fill' prop ditambahkan.
+             * 2. 'width' dan 'height' DIHAPUS.
+             * 3. className hanya 'object-cover'.
+             */
+            fill
+            className="object-cover"
           />
         </div>
       </div>
@@ -28,9 +34,6 @@ export default function Page() {
       <div className="p-4 md:max-w-2xl">
         {/* --- TYPOGRAPHY (HIERARKI) --- */}
         <div>
-          {/* - "Ohayou!" ditarik keluar sebagai Judul Utama
-            - Menambahkan Sub-Judul (text-orange-500) untuk peran Anda
-          */}
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
             Ohayou!
           </h1>
@@ -38,12 +41,6 @@ export default function Page() {
             Sr. DevOps Engineer
           </h2>
 
-          {/* - Bio dipecah menjadi 2 paragraf (menggunakan <div space-y-4>)
-            - Mengubah `md:text-left` menjadi `text-justify` agar rata kiri-kanan
-            - Mengubah warna teks agar lebih lembut (text-gray-700)
-          */}
-          
-          {/* === PERUBAHAN DI SINI === */}
           <div className="space-y-4 text-md md:text-xl text-justify text-gray-700">
             <p>
               I am a DevSecOps Engineer with over 7 years of experience in
@@ -54,9 +51,6 @@ export default function Page() {
               tools such as Ansible, Jenkins, Docker and Kubernetes.
             </p>
             <p>
-              {/* Anda menyebutkan Rust, yang saya tahu Anda minati! 
-                Saya beri highlight sedikit di sini.
-              */}
               Currently, I’m focused on mastering{" "}
               <span className="font-bold text-gray-900">Rust</span>, drawn
               to its potential for building secure, high-performance
@@ -68,16 +62,11 @@ export default function Page() {
         </div>
 
         {/* --- SOCIAL ICONS --- */}
-        {/* - Mengubah ikon menjadi bulat (`rounded-full`) dengan padding (`p-3`)
-          - Menambahkan efek hover `scale` dan transisi yang konsisten
-          - Menyesuaikan warna hover agar lebih konsisten dengan brand
-          - Ukuran ikon diubah ke `text-3xl` agar lebih pas di dalam lingkaran
-        */}
         <div className="flex justify-start mt-8 space-x-3">
           <a
             href="https://www.linkedin.com/in/rizqinrifai/"
             target="_blank"
-            rel="noopener noreferrer" // Penting untuk keamanan saat menggunakan target="_blank"
+            rel="noopener noreferrer"
             className="p-3 rounded-full text-gray-700 transition-all duration-300 ease-in-out hover:bg-blue-600 hover:text-white hover:scale-110"
           >
             <SiLinkedin className="text-3xl" />
@@ -91,7 +80,7 @@ export default function Page() {
             <SiInstagram className="text-3xl" />
           </a>
           <a
-            href="https://github.com/rifainareswara"
+            href="httpsf://github.com/rifainareswara"
             target="_blank"
             rel="noopener noreferrer"
             className="p-3 rounded-full text-gray-700 transition-all duration-300 ease-in-out hover:bg-purple-800 hover:text-white hover:scale-110"
@@ -99,7 +88,7 @@ export default function Page() {
             <SiGithub className="text-3xl" />
           </a>
           <a
-            href="https://medium.com/@rifainareswara"
+            href="httpsf://medium.com/@rifainareswara"
             target="_blank"
             rel="noopener noreferrer"
             className="p-3 rounded-full text-gray-700 transition-all duration-300 ease-in-out hover:bg-black hover:text-white hover:scale-110"
