@@ -92,7 +92,7 @@ export default function Home() {
                 <div className="font-bold text-xl mb-2">WEB Development</div>
                 <p>
                   Create a <span className="text-orange-500 font-bold">WEB</span>{" "}
-                  from scratch to deploy using frameworks such as Next, Exprerss,
+                  from scratch to deploy using frameworks such as Next, Express,
                   Golang, Rust. according to user needs.
                 </p>
                 <div className="flex justify-center mt-auto pt-4">

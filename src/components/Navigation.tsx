@@ -17,9 +17,8 @@ const Navigation = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0 text-gray-800 font-bold text-xl">
               <a href="https://rifai.co.id" target="_blank" rel="noopener noreferrer">
-              <span style={{ color: "orange" }}>RIFAI</span>
+              <span style={{ color: "orange" }}>RNRIFAI</span>
               </a>
-              .CO.ID
             </div>
           </div>
           <div className="hidden md:block">
