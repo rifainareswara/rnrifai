@@ -23,7 +23,7 @@ const projects = [
   },
   {
     title: "Project Gamma",
-    description: "Proyek full-stack dengan database PostgreSQL dan backend Rust. Ini adalah contoh deskripsi yang sangat panjang sekali yang pasti akan terpotong oleh fungsionalitas 'Read more' yang baru saja kita implementasikan. Ini akan memastikan bahwa tata letak kartu tetap rapi dan seragam di seluruh grid, memberikan pengalaman pengguna yang lebih baik.",
+    description: "Proyek full-stack dengan database PostgreSQL dan backend Rust.",
     imageUrl: "/images/project-gamma.png",
     demoUrl: "#",
     githubUrl: "#",
