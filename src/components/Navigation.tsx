@@ -16,7 +16,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 text-gray-800 font-bold text-xl">
-              <a href="https://rifai.co.id" target="_blank" rel="noopener noreferrer">
+              <a href="https://rifai.biz.id" target="_blank" rel="noopener noreferrer">
               <span style={{ color: "orange" }}>RNRIFAI</span>
               </a>
             </div>
