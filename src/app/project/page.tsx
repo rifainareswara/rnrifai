@@ -1,5 +1,5 @@
 // PERUBAHAN 1: Tambahkan "use client" di paling atas
-"use client"; 
+"use client";
 
 // PERUBAHAN 2: Import useState
 import React, { useState } from "react";
@@ -34,14 +34,27 @@ const projects = [
 // Style shadow
 const cardShadow = "0px 4.2px 3.4px rgba(0, 0, 0, 0.028), 0px 14.1px 11.4px rgba(0, 0, 0, 0.042), 0px 63px 51px rgba(0, 0, 0, 0.07)";
 
+// --- PERBAIKAN 1: Definisikan Tipe Data (Interface) ---
+// Ini memberi tahu TypeScript seperti apa "bentuk" dari objek 'project' Anda.
+interface Project {
+  title: string;
+  description: string;
+  imageUrl: string;
+  demoUrl: string;
+  githubUrl: string;
+}
+
 // PERUBAHAN 3: Kita buat komponen terpisah untuk KARTU PROYEK
 // Ini memungkinkan setiap kartu mengelola state "isExpanded" miliknya sendiri.
-function ProjectCard({ project }) {
+
+// --- PERBAIKAN 2: Terapkan Tipe 'Project' ke props komponen ---
+// Kita beri tahu fungsi ini bahwa 'project' adalah sebuah objek dengan tipe 'Project'
+function ProjectCard({ project }: { project: Project }) {
   // State untuk melacak apakah deskripsi sedang ditampilkan penuh
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Tentukan batas karakter. Sesuaikan angka ini sesuai kebutuhan.
-  const maxLength = 150; 
+  const maxLength = 150;
 
   const isLongDescription = project.description.length > maxLength;
 
@@ -80,7 +93,7 @@ function ProjectCard({ project }) {
         <p className="text-gray-700 mb-4 flex-grow">
           {isLongDescription ? displayedText : project.description}
         </p>
-        
+
         {/* Tombol "Read more" / "Read less" */}
         {isLongDescription && (
           <button
@@ -126,7 +139,7 @@ export default function page() {
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
-          
+
           {/* PERUBAHAN 4: Loop sekarang memanggil komponen ProjectCard */}
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />
