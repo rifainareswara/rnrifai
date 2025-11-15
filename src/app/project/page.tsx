@@ -15,10 +15,10 @@ const projects = [
     githubUrl: "https://github.com/rifainareswara/ai-notetaking-be.git",
   },
   {
-    title: "Project Beta",
-    description: "Ini adalah proyek lain yang menunjukkan keahlian saya dalam React dan Tailwind CSS. Deskripsi ini sengaja dibuat sedikit lebih pendek untuk pengujian.",
-    imageUrl: "/images/project-beta.png",
-    demoUrl: "#",
+    title: "DNA Company Profile",
+    description: "Proyek ini adalah company profile untuk PT Digital Nayaka Abhinaya, yang dikembangkan untuk mendemonstrasikan keahlian saya menggunakan React dan Tailwind CSS.",
+    imageUrl: "/images/dna.png",
+    demoUrl: "https://digitalnayaka.com/",
     githubUrl: "#",
   },
   {
