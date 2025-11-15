@@ -3,7 +3,7 @@
 
 // WAJIB: Import useState untuk mengelola data form
 import React, { useState } from "react";
-// <-- BARU: Impor ikon 'IoSync' untuk spinner
+// Impor ikon 'IoSync' untuk spinner
 import { IoPaperPlane, IoSync } from "react-icons/io5";
 
 export default function Page() {
@@ -23,8 +23,12 @@ export default function Page() {
   // Ambil access key Anda
   const YOUR_ACCESS_KEY = "0d0ba72b-95d2-4444-a5c3-1c9173d4f208";
 
-  // Fungsi ini dipanggil setiap kali ada perubahan di input
-  const handleChange = (e) => {
+  // ======================================================
+  // PERUBAHAN TIPE (TYPE) UNTUK MENGATASI ERROR
+  // ======================================================
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -32,8 +36,10 @@ export default function Page() {
     }));
   };
 
-  // Fungsi handleSubmit (tetap sama)
-  const handleSubmit = async (e) => {
+  // ======================================================
+  // PERUBAHAN TIPE (TYPE) UNTUK MENGATASI ERROR
+  // ======================================================
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); 
     setIsSubmitting(true);
     setStatusMessage("Sending...");
@@ -143,20 +149,18 @@ export default function Page() {
                 onChange={handleChange}
               ></textarea>
               
-              {/* =========================================== */}
-              {/* PERUBAHAN PADA TOMBOL ADA DI SINI          */}
-              {/* =========================================== */}
+              {/* ... Tombol ... */}
               <button
                 className="form-btn flex items-center justify-center bg-orange-500 text-white p-2 rounded mt-4 w-full md:w-auto disabled:bg-gray-400 
                            transition-all duration-300 ease-in-out
                            hover:bg-orange-600 
                            active:scale-95
-                           disabled:scale-100" // <-- BARU: Animasi transisi, hover, dan click
+                           disabled:scale-100" // <-- Animasi transisi, hover, dan click
                 type="submit"
                 disabled={isSubmitting} 
                 data-form-btn
               >
-                {/* <-- BARU: Logic untuk ganti ikon saat loading --> */}
+                {/* Logic untuk ganti ikon saat loading */}
                 {isSubmitting ? (
                   <IoSync className="animate-spin" /> // Ikon spinner berputar
                 ) : (
@@ -167,9 +171,6 @@ export default function Page() {
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </span>
               </button>
-              {/* =========================================== */}
-              {/* AKHIR PERUBAHAN TOMBOL                     */}
-              {/* =========================================== */}
             </form>
 
             {/* Menampilkan pesan status */}
