@@ -1,37 +1,138 @@
-import React from "react";
+// PERUBAHAN 1: Tambahkan "use client" di paling atas
+"use client"; 
 
+// PERUBAHAN 2: Import useState
+import React, { useState } from "react";
+import Image from "next/image";
+
+// Data proyek Anda (saya pindahkan ke luar komponen agar rapi)
+const projects = [
+  {
+    title: "AI Notataking",
+    description: "Project ini dibangun dengan Golang untuk sisi backend, termasuk setup project, koneksi database Supabase, pembuatan REST API yang clean dan scalable, hingga asynchronous processing untuk embedding AI. Integrasi AI menggunakan Gemini AI, lengkap dengan teknik vector embedding, Retrieval-Augmented Generation (RAG), dan AI Workflow yang biasa digunakan aplikasi berbasis LLM di dunia nyata. Dari sisi frontend, aplikasi ini menggunakan ReactJS dengan TypeScript yang sudah diatur agar mudah dihubungkan ke backend dan API Gemini AI.",
+    imageUrl: "/images/ai-notetaking.png",
+    demoUrl: "https://demo-notetaking-ai.rifai.biz.id/",
+    githubUrl: "https://github.com/rifainareswara/ai-notetaking-be.git",
+  },
+  {
+    title: "Project Beta",
+    description: "Ini adalah proyek lain yang menunjukkan keahlian saya dalam React dan Tailwind CSS. Deskripsi ini sengaja dibuat sedikit lebih pendek untuk pengujian.",
+    imageUrl: "/images/project-beta.png",
+    demoUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    title: "Project Gamma",
+    description: "Proyek full-stack dengan database PostgreSQL dan backend Rust. Ini adalah contoh deskripsi yang sangat panjang sekali yang pasti akan terpotong oleh fungsionalitas 'Read more' yang baru saja kita implementasikan. Ini akan memastikan bahwa tata letak kartu tetap rapi dan seragam di seluruh grid, memberikan pengalaman pengguna yang lebih baik.",
+    imageUrl: "/images/project-gamma.png",
+    demoUrl: "#",
+    githubUrl: "#",
+  },
+  // ... sisa proyek Anda
+];
+
+// Style shadow
+const cardShadow = "0px 4.2px 3.4px rgba(0, 0, 0, 0.028), 0px 14.1px 11.4px rgba(0, 0, 0, 0.042), 0px 63px 51px rgba(0, 0, 0, 0.07)";
+
+// PERUBAHAN 3: Kita buat komponen terpisah untuk KARTU PROYEK
+// Ini memungkinkan setiap kartu mengelola state "isExpanded" miliknya sendiri.
+function ProjectCard({ project }) {
+  // State untuk melacak apakah deskripsi sedang ditampilkan penuh
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Tentukan batas karakter. Sesuaikan angka ini sesuai kebutuhan.
+  const maxLength = 150; 
+
+  const isLongDescription = project.description.length > maxLength;
+
+  // Tentukan teks yang akan ditampilkan
+  const displayedText = isExpanded
+    ? project.description
+    : `${project.description.substring(0, maxLength)}...`;
+
+  return (
+    <div
+      className="flex flex-col rounded-lg overflow-hidden"
+      style={{
+        background: "#ffffff",
+        boxShadow: cardShadow,
+      }}
+    >
+      {/* Gambar Thumbnail */}
+      {project.imageUrl && (
+        <div className="relative w-full h-48">
+          <Image
+            src={project.imageUrl}
+            alt={`Thumbnail for ${project.title}`}
+            fill
+            className="object-cover"
+          />
+        </div>
+      )}
+
+      {/* Konten Kartu (Teks) */}
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-2xl font-bold text-gray-800 mb-3">
+          {project.title}
+        </h3>
+
+        {/* Deskripsi (dengan logika "Read more") */}
+        <p className="text-gray-700 mb-4 flex-grow">
+          {isLongDescription ? displayedText : project.description}
+        </p>
+        
+        {/* Tombol "Read more" / "Read less" */}
+        {isLongDescription && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)} // Toggle state
+            className="text-orange-600 font-medium hover:underline text-left mb-4"
+          >
+            {isExpanded ? "Read less" : "Read more"}
+          </button>
+        )}
+
+        {/* Link Demo & GitHub */}
+        <div className="flex gap-4 mt-auto">
+          <a
+            href={project.demoUrl}
+            className="text-orange-600 font-medium hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Live Demo
+          </a>
+          <a
+            href={project.githubUrl}
+            className="text-gray-600 font-medium hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+// --- KOMPONEN HALAMAN UTAMA ANDA ---
 export default function page() {
   return (
     <>
-      {/* This main container centers the card on the page, 
-        using a light gray background to make the card pop.
-      */}
-      <main className="flex flex-col items-center justify-center min-h-screen p-4 md:p-8">
-        
-        {/* This is the "Under Construction" card, 
-          styled using the colors and shadow from your example.
-        */}
-        <div
-          className="flex flex-col items-center p-8 md:p-12 rounded-lg text-center"
-          style={{
-            background: "#fefae0",
-            boxShadow:
-              "0px 4.2px 3.4px rgba(0, 0, 0, 0.028), 0px 14.1px 11.4px rgba(0, 0, 0, 0.042), 0px 63px 51px rgba(0, 0, 0, 0.07)",
-          }}
-        >
-          {/* Heading uses the orange-500 color from your example */}
-          <h1 className="text-4xl md:text-5xl font-bold text-orange-500 mb-4">
-            🚧 Coming Soon 🚧
-          </h1>
+      <main className="flex flex-col items-center p-8 md:p-16">
+        <h1 className="text-4xl md:text-5xl font-bold text-orange-500 mb-12 text-center">
+          My Projects
+        </h1>
 
-          {/* Paragraph uses the gray-800 color from your example */}
-          <p className="text-lg md:text-xl text-gray-800">
-            This page is currently under construction.
-            <br />
-            We'll be back soon!
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
+          
+          {/* PERUBAHAN 4: Loop sekarang memanggil komponen ProjectCard */}
+          {projects.map((project, index) => (
+            <ProjectCard key={index} project={project} />
+          ))}
+
         </div>
-
       </main>
     </>
   );
