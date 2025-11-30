@@ -26,11 +26,7 @@ export default function Home() {
               <h1 className="text-xl md:text-5xl font-bold mb-4">Ohayou!</h1>
               <p className="text-md md:text-xl md:text-justify mb-10">
                 For almost 7 years, I've been living at the intersection of innovative
-                technology and the dynamic startup ecosystem. As a{" "}
-                <span className="text-orange-500 font-bold">
-                  Sr. DevOps Engineer
-                </span>{" "}
-                at <span className="text-orange-500 font-bold">Magnus</span>, my mission is to
+                technology and the dynamic startup ecosystem. My mission is to
                 empower developers. I build the{" "}
                 <span className="text-orange-500 font-bold">
                   'highways' automated and scalable infrastructure
