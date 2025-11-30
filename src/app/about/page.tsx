@@ -62,23 +62,23 @@ export default function Page() {
         </div>
 
         {/* --- SOCIAL ICONS --- */}
-        <div className="flex justify-start mt-8 space-x-3">
-          <a
-            href="https://www.linkedin.com/in/rizqinrifai/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-full text-gray-700 transition-all duration-300 ease-in-out hover:bg-blue-600 hover:text-white hover:scale-110"
-          >
-            <SiLinkedin className="text-3xl" />
-          </a>
-          <a
-            href="https://www.instagram.com/rifainareswara"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-full text-gray-700 transition-all duration-300 ease-in-out hover:bg-pink-500 hover:text-white hover:scale-110"
-          >
-            <SiInstagram className="text-3xl" />
-          </a>
+        {/*<div className="flex justify-start mt-8 space-x-3">*/}
+        {/*  <a*/}
+        {/*    href="https://www.linkedin.com/in/rizqinrifai/"*/}
+        {/*    target="_blank"*/}
+        {/*    rel="noopener noreferrer"*/}
+        {/*    className="p-3 rounded-full text-gray-700 transition-all duration-300 ease-in-out hover:bg-blue-600 hover:text-white hover:scale-110"*/}
+        {/*  >*/}
+        {/*    <SiLinkedin className="text-3xl" />*/}
+        {/*  </a>*/}
+        {/*  <a*/}
+        {/*    href="https://www.instagram.com/rifainareswara"*/}
+        {/*    target="_blank"*/}
+        {/*    rel="noopener noreferrer"*/}
+        {/*    className="p-3 rounded-full text-gray-700 transition-all duration-300 ease-in-out hover:bg-pink-500 hover:text-white hover:scale-110"*/}
+        {/*  >*/}
+        {/*    <SiInstagram className="text-3xl" />*/}
+        {/*  </a>*/}
           <a
             href="httpsf://github.com/rifainareswara"
             target="_blank"
