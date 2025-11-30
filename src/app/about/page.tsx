@@ -62,7 +62,7 @@ export default function Page() {
         </div>
 
         {/* --- SOCIAL ICONS --- */}
-        {/*<div className="flex justify-start mt-8 space-x-3">*/}
+        <div className="flex justify-start mt-8 space-x-3">
         {/*  <a*/}
         {/*    href="https://www.linkedin.com/in/rizqinrifai/"*/}
         {/*    target="_blank"*/}
